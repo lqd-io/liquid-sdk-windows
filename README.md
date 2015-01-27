@@ -1,7 +1,7 @@
 
 # Quick Start to Liquid SDK for Windows
 
-This document is just a quick start introduction to Liquid SDK for Windows (Windows Phone 8 and Windows Store). You can read the full documentation at [https://www.lqd.io/documentation/windows/](https://www.lqd.io/documentation/windows/).
+This document is just a quick start introduction to Liquid SDK for Windows (Windows Phone 8 and Windows Store). You can read the full documentation at [https://onliquid.com/documentation/windows/](https://onliquid.com/documentation/windows/).
 
 To integrate Liquid in your app, just follow the 4 simple steps below.
 
@@ -9,23 +9,25 @@ To integrate Liquid in your app, just follow the 4 simple steps below.
 
 To install the Liquid SDK via NuGet  , run the following command through the Package Manager Console in each of the projects you want to install it to:
 
-```
-  PM> Install-Package Liquid
+```cs
+  PM> Install-Package Liquid -Pre
 ```
 
 ## Start using Liquid
 
-### 0. Add Capability to Application Manifest
+#### Add Capability to Application Manifest
 
-* In a Windows Phone project, open the visual editor of the Application Manifest, and check `Internet (Client & Server)` under Capabilities.
+Open the visual editor of your Application Manifest, go to Capabilities tab, and check:
 
-* In a Windows Store project, open the visual editor of the Application Manifest, and check `Internet (Client)` under Capabilities.
+* `Internet (Client & Server)` for a Windows Phone project.
+
+* `Internet (Client)` for a Windows Store project.
 
 ### 1. Initialize Liquid singleton
 
-In your **App.xaml.cs	** file initialize Liquid in `OnLaunched` method:
+In your **App.xaml.cs** file initialize Liquid in `OnLaunched` method:
 
-```
+```cs
 using LiquidWIndowsSDK;
 
 protected async override void OnLaunched(LaunchActivatedEventArgs e)  {
@@ -39,7 +41,7 @@ protected async override void OnLaunched(LaunchActivatedEventArgs e)  {
 If all your users are anonymous, you can skip this step. If not, you need to identify them and define their profile.
 Typically this is done at the same time your user logs in your app (or you perform an auto login), as seen in the example below:
 
-```
+```cs
 var attrs = new Dictionary<String,Object>
 {
   { "age", 23 },
@@ -54,12 +56,12 @@ The **username** or **email** are some of the typical user identifiers used by a
 
 You can track any type of event in your app, using one of the following methods:
 
-```
+```cs
 Liquid.Instance.Track("Click Profile Page");
 ```
 or:
 
-```
+```cs
 var attrs = new Dictionary<String,Object>
 {
   { "Profile ID", 123 }
@@ -71,13 +73,13 @@ Liquid.Instance.Track("Click Profile Page", attrs);
 
 You can transform any old-fashioned static variable into a "Liquid" dynamic variable just by replacing it with a Liquid method. You can use a dynamic variable like this:
 
-```
-await Liquid.Instance.GetStringVariable("welcomeText ", Welcome to our App);
+```cs
+await Liquid.Instance.GetStringVariable("welcomeText", "Welcome to our App");
 ```
 
 ### Full documentation
 
-We recommend you to read the full documentation at [https://www.lqd.io/documentation/windows/](https://www.lqd.io/documentation/windows/).
+We recommend you to read the full documentation at [https://onliquid.com/documentation/windows/](https://onliquid.com/documentation/windows/).
 
 
 # Author
